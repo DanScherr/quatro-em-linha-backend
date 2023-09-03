@@ -1,0 +1,22 @@
+{
+  "name": "quatro-em-linha-backend",
+  "version": "1.0.0",
+  "description": "Jogo quatro em linha Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "SET NODE_ENV=production && node server",
+    "dev": "nodemon server"
+  },
+  "author": "Daniel Scheicher",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
