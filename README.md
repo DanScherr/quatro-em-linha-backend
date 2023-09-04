@@ -7,6 +7,7 @@
   - [**:computer: Obter o projeto na sua máquina:**](#computer-obter-o-projeto-na-sua-máquina)
   - [**:flight\_departure: Rodar o projeto:**](#flight_departure-rodar-o-projeto)
   - [**:shinto\_shrine: Arquitetura:**](#shinto_shrine-arquitetura)
+    - [**Como atuar:**](#como-atuar)
   - [**:chains: Data Base:**](#chains-data-base)
   - [**:microscope: Para testarmos a API:**](#microscope-para-testarmos-a-api)
 
@@ -44,6 +45,14 @@
 - models?
   - onde ficam as consultas SQL, schemas e etc (mais relação ao banco de dados)
 
+### **Como atuar:**
+
+Vamos supor que realizou-se uma análise de requisito e definiu-se as entidades. Agora seria o momento de criar a tabela do banco de dados, implementar a rotina de tratamento e disponibilizar uma rota para que o frontend busque por esses dados.
+
+- A estrutura de pastas é feita de seguinte forma e segue o seguinte modelo:
+
+- ![](assets/images/tabelaXmodels_controllers_routes.png)
+
 ## **:chains: Data Base:**
 
 - Como banco de dados, o grupo inicialmente pensou em utilizar o **Azure**, o qual utiliza **SQL**.
@@ -54,4 +63,3 @@
 ## **:microscope: Para testarmos a API:**
 
 - Aconselha-se usar o **[POSTMAN](https://www.postman.com/)**!
-
