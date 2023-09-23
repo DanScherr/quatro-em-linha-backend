@@ -16,6 +16,10 @@ const ENV = process.env.SERVER_ENV;
 
 // Load Routes
 const test = require('./routes/test')
+const usuario = require('./routes/0001-usuario')
+const monetizacao = require('./routes/0002-monetizacao')
+const usuarioMonetizacao = require('./routes/0003-usuarioMonetizacao')
+const ranking = require('./routes/0004-ranking')
 
 // Initialize app variable with express
 const app = express();
@@ -30,6 +34,10 @@ if (process.env.NODE_ENV === 'dev') {
 
 // Mount Routes
 app.use('/api/v1/test', test);
+app.use('/api/v1/usuario', usuario);
+app.use('/api/v1/monetizacao', monetizacao);
+app.use('/api/v1/usuarioMonetizacao', usuarioMonetizacao);
+app.use('/api/v1/ranking', ranking);
 
 // Run Server
 const server = app.listen( PORT, () =>{
