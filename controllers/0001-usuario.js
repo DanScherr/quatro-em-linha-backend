@@ -56,16 +56,12 @@ exports.getUsuario = async (req, res, next) => {
  * @param {*} next 
  */
 exports.postUsuario = async (req, res, next) => {
-    const { nome, email, senha, telefone, dataNascimento, sexo, status } = req.body;
+    const { nome, email, senha } = req.body;
     try {
         const novoUsuario = await Usuario.create({
             nome,
             email,
             senha,
-            telefone,
-            dataNascimento,
-            sexo,
-            status,
         });
         res.status(201).json({ status: true, data: novoUsuario });
     } catch (error) {

@@ -26,22 +26,6 @@ Usuario.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    telefone: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    dataNascimento: {
-        type: DataTypes.DATE,
-        allowNull: true,
-    },
-    sexo: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    status: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    }
 }, {
     sequelize,
     modelName: 'Usuario'
