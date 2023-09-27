@@ -8,7 +8,7 @@ const {
     getAllUsuario,
     postUsuario,
     getUsuario,
-    putUsuario
+    putUsuario,
 } = require('./../controllers/0001-usuario');
 
 // Rotas sem parametros

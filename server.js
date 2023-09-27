@@ -20,6 +20,7 @@ const usuario = require('./routes/0001-usuario')
 const monetizacao = require('./routes/0002-monetizacao')
 const usuarioMonetizacao = require('./routes/0003-usuarioMonetizacao')
 const ranking = require('./routes/0004-ranking')
+const login = require('./routes/0005-login')
 
 // Initialize app variable with express
 const app = express();
@@ -38,6 +39,7 @@ app.use('/api/v1/usuario', usuario);
 app.use('/api/v1/monetizacao', monetizacao);
 app.use('/api/v1/usuarioMonetizacao', usuarioMonetizacao);
 app.use('/api/v1/ranking', ranking);
+app.use('/api/v1/login', login);
 
 // Run Server
 const server = app.listen( PORT, () =>{
