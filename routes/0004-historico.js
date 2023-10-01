@@ -5,22 +5,22 @@ const router = express.Router();
 
 // Importando controllers
 const {
-    getAllRankingEntries,
-    createRankingEntry,
-    getRankingEntry,
-    updateRankingEntry
-} = require('./../controllers/0004-ranking');
+    getAllHistorico,
+    createHistorico,
+    getHistoricoById,
+    updateHistorico
+} = require('../controllers/0004-historico');
 
 // Rotas sem parametros
 router.route('/')
-    .get(getAllRankingEntries)
-    .post(createRankingEntry)
+    .get(getAllHistorico)
+    .post(createHistorico)
 ;
 
 // Rotas com parametros
 router.route('/:id')
-    .get(getRankingEntry)
-    .put(updateRankingEntry)
+    .get(getHistoricoById)
+    .put(updateHistorico)
 ;
 
 // Exportando model
