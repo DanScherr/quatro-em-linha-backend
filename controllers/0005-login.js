@@ -19,7 +19,7 @@ exports.postUsuarioLogin = async (req, res, next) => {
     try {
         if (usuario && await usuario.verificaSenha(senha)) {
             // Senha correta, permita o login
-            res.status(200).json({ status: true });
+            res.status(200).json({ status: true, id: usuario.id_User});
           } else {
             // Senha incorreta, negue o login
             res.status(404).json({ status: false });

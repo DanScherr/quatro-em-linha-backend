@@ -71,10 +71,14 @@ io.on('connect', (socket) => {
     console.log(`Novo socket conectado: ${socket.id}`);
 });
 
+
 io.on("connection", (socket) => {
     socket.emit("hello", "world");
     socket.on("msg", (arg) => {
         console.log(arg); // world
         socket.broadcast.emit('msg', arg);
-      });
+        if (arg.gameStatus !== 'jogando'){
+            io.disconnectSockets();
+        };
+    });
 });
