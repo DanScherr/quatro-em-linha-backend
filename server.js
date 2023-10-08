@@ -5,6 +5,9 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const sequelize = require('./bin/database');
+//
+const http = require('http');
+const { Server } = require("socket.io");
 
 // Carregar Banco
 sequelize.sync().then(() => console.debug('db is ready!'))
@@ -24,6 +27,8 @@ const login = require('./routes/0005-login')
 
 // Initialize app variable with express
 const app = express();
+
+
 
 // Body parser
 app.use(express.json());
@@ -51,4 +56,25 @@ process.on('unhandledRejection', (err, promise) => {
     console.log(`Error: ${err.message}`);
     // Close server & exit process
     server.close(() => process.exit(1));
+});
+
+// Instantiating socket.io
+const io = new Server(server, {path: '/api/v1/gaming',
+    cors: {
+        origin: "http://localhost:5000",
+    }
+});
+
+// Event handlers for Socket
+io.on('connect', (socket) => {
+    console.log('Is socket connected:', socket.connected);
+    console.log(`Novo socket conectado: ${socket.id}`);
+});
+
+io.on("connection", (socket) => {
+    socket.emit("hello", "world");
+    socket.on("msg", (arg) => {
+        console.log(arg); // world
+        socket.broadcast.emit('msg', arg);
+      });
 });
