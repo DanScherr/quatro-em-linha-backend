@@ -2,9 +2,14 @@
 "use strict";
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require("../bin/database");
+const bcrypt = require('bcryptjs');
 
 
-class Usuario extends Model {}
+class Usuario extends Model {
+    async verificaSenha(senha) {
+    // @ts-ignore
+    return bcrypt.compare(senha, this.senha);
+  }}
 // Cria tabela com respectivo Schema
 Usuario.init({
     id_User: {
@@ -28,7 +33,16 @@ Usuario.init({
     },
 }, {
     sequelize,
-    modelName: 'Usuario'
+    modelName: 'Usuario',
+    hooks: {
+        beforeCreate: async (usuario) => {
+          const saltRounds = 10; // Número de rounds para a criptografia
+          // @ts-ignore
+          const hashedPassword = await bcrypt.hash(usuario.senha, saltRounds);
+          // @ts-ignore
+          usuario.senha = hashedPassword;
+        },
+      },
 });
 
 module.exports = Usuario;

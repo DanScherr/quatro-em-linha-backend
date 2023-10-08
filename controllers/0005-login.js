@@ -15,16 +15,15 @@ const Usuario = require('../models/0001-usuario');
  */
 exports.postUsuarioLogin = async (req, res, next) => {
     const { email, senha } = req.body;
+    const usuario = await Usuario.findOne({ where: { email: email } });
     try {
-        const loginUsuario = await Usuario.findAll({
-            where: {
-                email: email,
-                senha: senha,
-            }
-        });
-
-        if (loginUsuario.length !== 0) res.status(200).json({ status: true });
-        else res.status(404).json({ status: false });
+        if (usuario && await usuario.verificaSenha(senha)) {
+            // Senha correta, permita o login
+            res.status(200).json({ status: true });
+          } else {
+            // Senha incorreta, negue o login
+            res.status(404).json({ status: false });
+          }
     } catch (error) {
         res.status(400).json({ status: false, error: 'Houve um erro ao tentar logar o Usuário.' });
     }
