@@ -11,7 +11,7 @@ UsuarioMonetizacao.init({
         primaryKey: true,
         allowNull: false,
         references: {
-            model: 'Usuario',
+            model: 'Usuarios',
             key: 'id_User',
         },
     },
@@ -20,8 +20,8 @@ UsuarioMonetizacao.init({
         primaryKey: true,
         allowNull: false,
         references: {
-            model: 'Monetizacao',
-            key: 'id',
+            model: 'Monetizacaos',
+            key: 'id_Mon',
         },
     },
 }, {
