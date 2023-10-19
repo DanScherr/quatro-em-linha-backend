@@ -56,11 +56,12 @@ exports.getMonetizacao = async (req, res, next) => {
  * @param {*} next 
  */
 exports.postMonetizacao = async (req, res, next) => {
-    const { nome, descricao, imagem, valor } = req.body;
+    const { nome, descricao, categoria, imagem, valor } = req.body;
     try {
         const novaMonetizacao = await Monetizacao.create({
             nome,
             descricao,
+            categoria,
             imagem,
             valor,
         });
@@ -81,13 +82,14 @@ exports.postMonetizacao = async (req, res, next) => {
  */
 exports.putMonetizacao = async (req, res, next) => {
     const id = parseInt(req.params.id);
-    const { nome, descricao, imagem, valor } = req.body;
+    const { nome, descricao, categoria, imagem, valor } = req.body;
     try {
         const monetizacao = await Monetizacao.findByPk(id);
         if (monetizacao) {
             await monetizacao.update({
                 nome,
                 descricao,
+                categoria,
                 imagem,
                 valor,
             });
