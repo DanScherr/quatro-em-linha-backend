@@ -65,10 +65,14 @@ const io = new Server(server, {path: '/api/v1/gaming',
     }
 });
 
+// Array of client Ids connected to socket
+const socketClientConnectedIds = [];
+
 // Event handlers for Socket
 io.on('connect', (socket) => {
     console.log('Is socket connected:', socket.connected);
-    console.log(`Novo socket conectado: ${socket.id}`);
+    socketClientConnectedIds.push(socket.id);
+    console.log(`Lista de sockets conectados: ${socketClientConnectedIds}`);
 });
 
 
@@ -77,8 +81,8 @@ io.on("connection", (socket) => {
     socket.on("msg", (arg) => {
         console.log(arg); // world
         socket.broadcast.emit('msg', arg);
-        if (arg.gameStatus !== 'jogando'){
-            io.disconnectSockets();
-        };
+        // if (arg.gameStatus !== 'jogando'){
+        //     io.disconnectSockets();
+        // };
     });
 });
