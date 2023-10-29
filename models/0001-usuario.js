@@ -31,6 +31,11 @@ Usuario.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
+    carteira: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+    },
 }, {
     sequelize,
     modelName: 'Usuario',

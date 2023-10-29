@@ -80,18 +80,12 @@ exports.postUsuario = async (req, res, next) => {
  */
 exports.putUsuario = async (req, res, next) => {
     const id = parseInt(req.params.id);
-    const { nome, email, senha, telefone, dataNascimento, sexo, status } = req.body;
+    const { carteira } = req.body;
     try {
         const usuario = await Usuario.findByPk(id);
         if (usuario) {
             await usuario.update({
-                nome,
-                email,
-                senha,
-                telefone,
-                dataNascimento,
-                sexo,
-                status,
+                carteira,
             });
             res.status(200).json({ status: true, data: 'Usuário atualizado com sucesso.' });
         } else {
