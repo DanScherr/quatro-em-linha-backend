@@ -35,6 +35,7 @@ Monetizacao.init({
 }, {
     sequelize,
     modelName: 'Monetizacao',
+    tableName: 'Monetizacao',
 });
 
 async function criarTabela() {

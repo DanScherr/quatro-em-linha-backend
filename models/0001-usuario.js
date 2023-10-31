@@ -34,6 +34,7 @@ Usuario.init({
 }, {
     sequelize,
     modelName: 'Usuario',
+    tableName: 'Usuario',
     hooks: {
         beforeCreate: async (usuario) => {
           const saltRounds = 10; // Número de rounds para a criptografia
