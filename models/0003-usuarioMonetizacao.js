@@ -11,7 +11,7 @@ UsuarioMonetizacao.init({
         primaryKey: true,
         allowNull: false,
         references: {
-            model: 'Usuarios',
+            model: 'Usuario',
             key: 'id_User',
         },
     },
@@ -20,14 +20,17 @@ UsuarioMonetizacao.init({
         primaryKey: true,
         allowNull: false,
         references: {
-            model: 'Monetizacaos',
+            model: 'Monetizacao',
             key: 'id_Mon',
         },
     },
 }, {
     sequelize,
     modelName: 'UsuarioMonetizacao',
+    tableName: 'UsuarioMonetizacao',
     timestamps: false,
 });
+
+  
 
 module.exports = UsuarioMonetizacao;

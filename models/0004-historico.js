@@ -10,7 +10,7 @@ Historico.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Usuarios',
+        model: 'Usuario',
         key: 'id_User', // Substitua 'id_User' pelo nome da chave primária na tabela 'usuario'
       },
     },
@@ -18,7 +18,7 @@ Historico.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Usuarios',
+        model: 'Usuario',
         key: 'id_User', // Substitua 'id_User' pelo nome da chave primária na tabela 'usuario'
       },
     },
@@ -26,7 +26,7 @@ Historico.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Monetizacaos',
+        model: 'Monetizacao',
         key: 'id_Mon',
       },
     },
@@ -34,7 +34,7 @@ Historico.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Monetizacaos',
+        model: 'Monetizacao',
         key: 'id_Mon',
       },
     },
@@ -42,7 +42,7 @@ Historico.init(
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'Usuarios',
+        model: 'Usuario',
         key: 'id_User', // Substitua 'id_User' pelo nome da chave primária na tabela 'usuario'
       },
     },
@@ -54,6 +54,7 @@ Historico.init(
   {
     sequelize,
     modelName: 'Historico',
+    tableName: 'Historico',
     timestamps: false, // Defina como true se desejar que o Sequelize adicione colunas createdAt e updatedAt à tabela
   }
 );
