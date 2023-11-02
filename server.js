@@ -8,6 +8,9 @@ const sequelize = require('./bin/database');
 //
 const http = require('http');
 const { Server } = require("socket.io");
+//
+const http = require('http');
+const { Server } = require("socket.io");
 
 // Carregar Banco
 sequelize.sync().then(() => console.debug('db is ready!'))
@@ -27,6 +30,8 @@ const login = require('./routes/0005-login')
 
 // Initialize app variable with express
 const app = express();
+
+
 
 
 
@@ -65,24 +70,16 @@ const io = new Server(server, {path: '/api/v1/gaming',
     }
 });
 
-// Array of client Ids connected to socket
-const socketClientConnectedIds = [];
-
 // Event handlers for Socket
 io.on('connect', (socket) => {
     console.log('Is socket connected:', socket.connected);
-    socketClientConnectedIds.push(socket.id);
-    console.log(`Lista de sockets conectados: ${socketClientConnectedIds}`);
+    console.log(`Novo socket conectado: ${socket.id}`);
 });
-
 
 io.on("connection", (socket) => {
     socket.emit("hello", "world");
     socket.on("msg", (arg) => {
         console.log(arg); // world
         socket.broadcast.emit('msg', arg);
-        // if (arg.gameStatus !== 'jogando'){
-        //     io.disconnectSockets();
-        // };
-    });
+      });
 });
