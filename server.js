@@ -8,9 +8,6 @@ const sequelize = require('./bin/database');
 //
 const http = require('http');
 const { Server } = require("socket.io");
-//
-const http = require('http');
-const { Server } = require("socket.io");
 
 // Carregar Banco
 sequelize.sync().then(() => console.debug('db is ready!'))
@@ -81,5 +78,9 @@ io.on("connection", (socket) => {
     socket.on("msg", (arg) => {
         console.log(arg); // world
         socket.broadcast.emit('msg', arg);
+        if( arg.gameStatus === 'winner' || arg.gameStatus === 'loser' ){
+            console.log('Socket desconectado:', socket.id)    
+            socket.disconnect();
+        }
       });
 });
