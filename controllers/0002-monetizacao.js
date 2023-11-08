@@ -3,6 +3,8 @@
 
 const { error } = require('console');
 const Monetizacao = require('../models/0002-monetizacao');
+const UsuarioMonetizacao = require('../models/0003-usuarioMonetizacao');
+const { Sequelize } = require('sequelize');
 
 /**
  * @description GET ALL -> Similar ao SELECT * do SQL
@@ -31,20 +33,43 @@ exports.getAllMonetizacao = async (req, res, next) => {
  * @param {*} req 
  * @param {*} res 
  * @param {*} next 
- */
-exports.getMonetizacao = async (req, res, next) => {
-    const id = parseInt(req.params.id);
-    try {
-        const monetizacao = await Monetizacao.findByPk(id);
+ */exports.getMonetizacao = async (req, res, next) => {
+  const id = parseInt(req.params.id);
+  try {
+    // Consulta para obter os IDs de monetização associados ao usuário
+    const usuarioMonetizacao = await UsuarioMonetizacao.findAll({
+      where: { id_usuario: id },
+      attributes: ['id_monetizacao'],
+    });
+
+    // @ts-ignore
+    const monetizacaoIds = usuarioMonetizacao.map((relacao) => relacao.id_monetizacao);
+
+    if (monetizacaoIds.length > 0) {
+        // Consulta para obter as monetizações que não estão associadas ao usuário
+        const monetizacao = await Monetizacao.findAll({
+          where: {
+            id_Mon: {
+            // @ts-ignore
+              [Sequelize.Op.notIn]: monetizacaoIds,
+            },
+          },
+          attributes: ['nome', 'descricao', 'categoria', 'imagem', 'valor'],
+        });
+  
         if (monetizacao) {
-            res.status(200).json({ status: true, data: monetizacao });
+          res.status(200).json({ status: true, data: monetizacao });
         } else {
-            res.status(404).json({ status: false, error: 'Monetização não encontrada' });
+          res.status(404).json({ status: false, error: 'Monetizações não encontradas para o usuário.' });
         }
+      } else {
+        res.status(404).json({ status: false, error: 'Nenhuma relação de usuário monetização encontrada para o usuário.' });
+      }
     } catch (error) {
-        res.status(500).json({ status: false, error: 'Houve um erro ao buscar a monetização.' });
+      console.error('Erro ao buscar as monetizações:', error);
+      res.status(500).json({ status: false, error: 'Houve um erro ao buscar as monetizações.' });
     }
-};
+  };
 
 /**
  * @description POST -> Similar ao INSERT do SQL
