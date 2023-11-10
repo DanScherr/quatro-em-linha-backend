@@ -54,7 +54,7 @@ exports.getAllMonetizacao = async (req, res, next) => {
               [Sequelize.Op.notIn]: monetizacaoIds,
             },
           },
-          attributes: ['nome', 'descricao', 'categoria', 'imagem', 'valor'],
+          attributes: ['id_Mon','nome', 'descricao', 'categoria', 'imagem', 'valor'],
         });
   
         if (monetizacao) {
