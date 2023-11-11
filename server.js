@@ -4,6 +4,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const cors = require('cors');
 const sequelize = require('./bin/database');
 //
 const http = require('http');
@@ -26,6 +27,10 @@ const login = require('./routes/0005-login')
 
 // Initialize app variable with express
 const app = express();
+
+// Adding cors
+app.use(cors());
+
 
 // Body parser
 app.use(express.json());
