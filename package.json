@@ -1,6 +1,6 @@
 {
   "name": "quatro-em-linha-backend",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Jogo quatro em linha Backend",
   "main": "server.js",
   "scripts": {
