@@ -31,7 +31,6 @@ const app = express();
 // Adding cors
 app.use(cors());
 
-
 // Body parser
 app.use(express.json());
 
