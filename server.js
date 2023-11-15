@@ -60,10 +60,12 @@ process.on('unhandledRejection', (err, promise) => {
 });
 
 // Instantiating socket.io
-const io = new Server(server, {path: '/api/v1/gaming',
+const io = new Server(server, {
+    path: '/api/v1/gaming',
     cors: {
         origin: "https://quatroemlinhafrontendweb.azurewebsites.net/",
-    }
+    },
+    pingTimeout: 60000
 });
 
 // Event handlers for Socket
