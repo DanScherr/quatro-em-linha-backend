@@ -23,6 +23,8 @@ const monetizacao = require('./routes/0002-monetizacao')
 const usuarioMonetizacao = require('./routes/0003-usuarioMonetizacao')
 const historico = require('./routes/0004-historico')
 const login = require('./routes/0005-login')
+const anuncio = require('./routes/0006-anuncio')
+const cotacao = require('./routes/0007-cotacao')
 
 // Initialize app variable with express
 const app = express();
@@ -41,6 +43,8 @@ app.use('/api/v1/monetizacao', monetizacao);
 app.use('/api/v1/usuarioMonetizacao', usuarioMonetizacao);
 app.use('/api/v1/historico', historico);
 app.use('/api/v1/login', login);
+app.use('/api/v1/anuncio', anuncio);
+app.use('/api/v1/cotacao', cotacao);
 
 // Run Server
 const server = app.listen( PORT, () =>{
