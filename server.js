@@ -66,7 +66,7 @@ process.on('unhandledRejection', (err, promise) => {
 const io = new Server(server, {
     path: '/api/v1/gaming',
     cors: {
-        origin: "https://quatroemlinhafrontendweb.azurewebsites.net",
+        origin: "https://quatroemlinha.azurewebsites.net",
         methods: ["GET", "POST"]
     },
     pingTimeout: 60000
